@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/03 20:48:24 by elvmarti          #+#    #+#             */
+/*   Updated: 2021/05/11 00:45:11 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+int	ft_isalnum(int a)
 {
-	printf("Holis");
-	return (NULL);
-}
-
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
-	{
-		printf("Error");
+	if ((a > 64 && a < 91) || (a > 96 && a < 123) || (a > 47 && a < 58))
 		return (1);
-	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	return (0);
 }

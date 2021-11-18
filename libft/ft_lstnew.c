@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/10/07 14:34:52 by elvmarti          #+#    #+#             */
+/*   Updated: 2021/05/14 00:33:43 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+t_list	*ft_lstnew(void *content)
 {
-	printf("Holis");
-	return (NULL);
-}
+	t_list	*new;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
-	{
-		printf("Error");
-		return (1);
-	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

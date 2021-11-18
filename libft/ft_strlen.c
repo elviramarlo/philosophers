@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/03 20:47:48 by elvmarti          #+#    #+#             */
+/*   Updated: 2021/05/11 00:51:00 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+size_t	ft_strlen(const char *str)
 {
-	printf("Holis");
-	return (NULL);
-}
+	unsigned int	i;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
-	{
-		printf("Error");
-		return (1);
-	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

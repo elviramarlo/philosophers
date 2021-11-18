@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/03 20:58:30 by elvmarti          #+#    #+#             */
+/*   Updated: 2020/10/08 13:34:28 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+void	*ft_memmove(void *s1, const void *s2, size_t n)
 {
-	printf("Holis");
-	return (NULL);
-}
+	char	*pt1;
+	char	*pt2;
+	size_t	i;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
+	pt1 = (char *)s1;
+	pt2 = (char *)s2;
+	i = -1;
+	if (pt1 == pt2)
+		return (pt1);
+	if (pt2 < pt1)
 	{
-		printf("Error");
-		return (1);
+		while (n > 0)
+		{
+			pt1[n - 1] = pt2[n - 1];
+			n--;
+		}
 	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	else
+	{
+		while (++i < n)
+			pt1[i] = pt2[i];
+	}
+	return (pt1);
 }

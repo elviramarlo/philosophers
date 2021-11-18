@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/03 20:57:41 by elvmarti          #+#    #+#             */
+/*   Updated: 2020/10/06 13:36:02 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+void	*ft_memcpy(void *s1, const void *s2, size_t n)
 {
-	printf("Holis");
-	return (NULL);
-}
+	size_t			i;
+	unsigned char	*dest;
+	unsigned char	*src;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
+	dest = (unsigned char *)s1;
+	src = (unsigned char *)s2;
+	i = 0;
+	if (src == dest)
 	{
-		printf("Error");
-		return (1);
+		return (0);
 	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	while (i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return (dest);
 }

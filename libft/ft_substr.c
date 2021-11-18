@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/09/21 17:16:51 by elvmarti          #+#    #+#             */
+/*   Updated: 2021/05/11 01:02:00 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	printf("Holis");
-	return (NULL);
-}
+	unsigned int	i;
+	unsigned int	len_s;
+	char			*str;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
-	{
-		printf("Error");
-		return (1);
-	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	if (!s)
+		return (0);
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	len_s = ft_strlen(s);
+	while (i < len && start < len_s)
+		str[i++] = s[start++];
+	str[i] = '\0';
+	return (str);
 }

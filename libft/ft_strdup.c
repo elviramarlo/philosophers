@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/03 21:04:05 by elvmarti          #+#    #+#             */
+/*   Updated: 2021/05/11 00:59:21 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+char	*ft_strdup(const char *s)
 {
-	printf("Holis");
-	return (NULL);
-}
+	char	*pt;
+	int		size;
+	int		i;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
+	size = 0;
+	i = 0;
+	while (s[size] != '\0')
+		size++;
+	pt = malloc(sizeof(char) * (size + 1));
+	if (!pt)
+		return (NULL);
+	while (i < size)
 	{
-		printf("Error");
-		return (1);
+		pt[i] = s[i];
+		i++;
 	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	pt[i] = '\0';
+	return (pt);
 }

@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/04 12:50:38 by elvmarti          #+#    #+#             */
+/*   Updated: 2020/10/16 10:55:48 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+void	*ft_calloc(size_t num, size_t size)
 {
-	printf("Holis");
-	return (NULL);
-}
+	void	*pt;
+	size_t	i;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
+	pt = (void *)malloc(num * size);
+	if (!pt)
+		return (NULL);
+	i = 0;
+	while (i <= num * size)
 	{
-		printf("Error");
-		return (1);
+		((char *)pt)[i] = 0;
+		i++;
 	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	return (pt);
 }

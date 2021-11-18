@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/04 12:09:25 by elvmarti          #+#    #+#             */
+/*   Updated: 2021/05/11 01:07:01 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	printf("Holis");
-	return (NULL);
-}
+	size_t	i;
+	size_t	t1;
+	size_t	t2;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
+	i = 0;
+	t1 = ft_strlen(dst);
+	t2 = ft_strlen(src);
+	if (size <= t1)
+		return (t2 + size);
+	while (t1 + i < size - 1 && src[i])
 	{
-		printf("Error");
-		return (1);
+		dst[t1 + i] = src[i];
+		i++;
 	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	dst[t1 + i] = '\0';
+	return (t1 + t2);
 }

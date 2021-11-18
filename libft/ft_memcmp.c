@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/03 20:57:11 by elvmarti          #+#    #+#             */
+/*   Updated: 2020/10/06 13:38:40 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	printf("Holis");
-	return (NULL);
-}
+	unsigned char	*pt1;
+	unsigned char	*pt2;
+	size_t			i;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
+	pt1 = (unsigned char *)s1;
+	pt2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
 	{
-		printf("Error");
-		return (1);
+		if (pt1[i] != pt2[i])
+		{
+			return (pt1[i] - pt2[i]);
+		}
+		i++;
 	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	return (0);
 }

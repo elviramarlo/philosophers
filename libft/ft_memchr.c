@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/03 20:55:46 by elvmarti          #+#    #+#             */
+/*   Updated: 2020/10/06 13:34:52 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	printf("Holis");
-	return (NULL);
-}
+	size_t			i;
+	unsigned char	*pt;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
+	pt = (unsigned char *)s;
+	i = 0;
+	while (i < n && pt[i] != (unsigned char)c)
 	{
-		printf("Error");
-		return (1);
+		i++;
 	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	if (i == n)
+	{
+		return (0);
+	}
+	return (&pt[i]);
 }

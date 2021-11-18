@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/09/30 11:16:48 by elvmarti          #+#    #+#             */
+/*   Updated: 2021/05/11 01:02:57 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	printf("Holis");
-	return (NULL);
-}
+	char	*str;
+	size_t	i;
+	size_t	size;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
+	i = 0;
+	if (!s)
+		return (NULL);
+	size = ft_strlen(s);
+	str = ((char *)malloc(sizeof(char) * size + 1));
+	if (str)
 	{
-		printf("Error");
-		return (1);
+		while (i < size)
+		{
+			str[i] = f(i, s[i]);
+			i++;
+		}
+		str[i] = '\0';
 	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	return (str);
 }

@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/18 20:02:19 by elvmarti         ###   ########.fr       */
+/*   Created: 2020/08/03 20:54:23 by elvmarti          #+#    #+#             */
+/*   Updated: 2021/05/11 01:10:22 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "libft.h"
 
-void	*make_thread(void *param)
+void	*ft_memccpy(void *s1, const void *s2, int c, size_t n)
 {
-	printf("Holis");
-	return (NULL);
-}
+	unsigned char	*dest;
+	unsigned char	*src;
+	size_t			i;
 
-int main(int argc, char **argv)
-{
-	pthread_t hilo;
-	
-	if (argc < 5 || argc > 6)
+	dest = (unsigned char *)s1;
+	src = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
 	{
-		printf("Error");
-		return (1);
+		dest[i] = src[i];
+		i++;
+		if (dest[i - 1] == (unsigned char)c)
+		{
+			return (&dest[i]);
+		}
 	}
-	pthread_create(&hilo, NULL, make_thread, NULL);
-	pthread_join(hilo, NULL);
+	return (0);
 }
