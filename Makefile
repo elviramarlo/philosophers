@@ -6,7 +6,7 @@
 #    By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 16:51:39 by elvmarti          #+#    #+#              #
-#    Updated: 2021/11/23 18:46:51 by elvmarti         ###   ########.fr        #
+#    Updated: 2021/11/25 18:39:29 by elvmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = philo
 HEADER = philo.h
 
 SRCS = srcs/philo.c \
-		srcs/utils.c
+		srcs/utils.c \
+		srcs/create_list.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -25,29 +26,18 @@ CFLAGS = -Wall -Werror -Wextra#-g3 -fsanitize=address
 
 RM = rm -f
 
-LIBFTPATH = ./libft/
 
-LIBFTNAME = libft.a
-
-LIBFT = $(LIBFTPATH)$(LIBFTNAME)
-
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS)
 		@echo $(PURPLE)Compiling ... $(RESET)
-		$(CC) ${CFLAGS} ${OBJS} -I $(HEADER) -L. ${LIBFT} -o ${NAME}
-
-$(LIBFT):		
-		@echo $(PURPLE)Libft $(RESET)
-		make re -C $(LIBFTPATH)
+		$(CC) ${CFLAGS} ${OBJS} -I $(HEADER) -o ${NAME}
 
 all: $(NAME)
 
-debug: $(FU_ELVIRA)
-
 clean:
 		@echo $(PURPLE)Cleaning ... $(RED)
-		$(RM) $(OBJS) $(LIBFTPATH)*.o
+		$(RM) $(OBJS)
 
 fclean: clean
-		$(RM) $(NAME) $(LIBFT)
+		$(RM) $(NAME)
 
 re: fclean all
