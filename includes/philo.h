@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:28:05 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/25 18:38:14 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/11/25 18:53:29 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ typedef struct s_philolist
 }				t_philolist;
 
 t_philolist	*create_list();
-int			print_error();
 
-int	ft_isdigit(int a);
-void	ft_bzero(void *pt, size_t n);
-int	ft_atoi(char *str);
+int			print_error();
+int			ft_isdigit(int a);
+void		ft_bzero(void *pt, size_t n);
+int			ft_atoi(char *str);
 
 #endif
