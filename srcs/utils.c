@@ -6,11 +6,21 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:41:19 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/25 18:40:08 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/11/25 23:45:15 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	calculate_time(t_philolist *l)
+{
+	gettimeofday(&l->philo.i_time, NULL);
+	usleep(2000);
+	gettimeofday(&l->philo.f_time, NULL);
+	l->philo.time = (l->philo.f_time.tv_sec - l->philo.i_time.tv_sec) * 
+		1000 + (l->philo.f_time.tv_usec - l->philo.i_time.tv_usec) / 1000.0;
+    printf("Has tardado: %g milisegundos\n", l->philo.time);
+}
 
 int	print_error(void)
 {

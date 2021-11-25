@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:28:05 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/25 18:54:45 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/11/25 23:54:48 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,35 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_philo
 {
-	int	num_philo;
+	int	num_total_philo;
 	int	time_die;
 	int	time_eat;
 	int	time_sleep;
 	int	num_must_eat;
-}			t_philo;
-
-typedef struct s_data_philo
-{
-	int	num;
+	int	num_eat;
+	int	num_philo;
 	int	fork;
-}			t_data_philo;
+	float	time;
+	struct timeval	i_time;
+	struct timeval	f_time;
+}			t_philo;
 
 
 typedef struct s_philolist
 {
-	t_data_philo		philo;
+	t_philo		philo;
 	struct s_philolist	*next;
 	struct s_philolist	*prev;
 }				t_philolist;
 
-t_philolist	*create_list();
+
+
+t_philolist	*make_list(int argc, char **argv);
+void		calculate_time(t_philolist *l);
 
 int			print_error();
 int			ft_isdigit(int a);
