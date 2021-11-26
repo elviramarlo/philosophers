@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:01:11 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/26 00:26:47 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/11/26 16:58:30 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_philolist	*make_philo(int i, int argc, char **argv)
 		list->philo.num_must_eat = ft_atoi(argv[5]);
 	if (list->philo.num_total_philo < 1)
 		print_error();
+	if (list->philo.num_philo % 2 == 0)
+		list->philo.is_his_turn = 1;
 	list->next = NULL;
 	list->prev = NULL;
 	return (list);

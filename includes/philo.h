@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:28:05 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/25 23:54:48 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/11/26 17:14:16 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ typedef struct s_philo
 	int	time_die;
 	int	time_eat;
 	int	time_sleep;
+	int	time_think;
 	int	num_must_eat;
 	int	num_eat;
 	int	num_philo;
 	int	fork;
+	int	is_his_turn;
 	float	time;
 	struct timeval	i_time;
 	struct timeval	f_time;
@@ -46,6 +48,7 @@ typedef struct s_philolist
 
 t_philolist	*make_list(int argc, char **argv);
 void		calculate_time(t_philolist *l);
+void		eat(t_philolist *list);
 
 int			print_error();
 int			ft_isdigit(int a);

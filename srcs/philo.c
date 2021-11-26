@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/25 23:57:03 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/11/26 17:16:26 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	*make_thread(void *param)
 	t_philolist	*list;
 
 	list = (t_philolist *)param;
-	printf("Num filo: %d\n", list->philo.num_philo);
+	//printf("Num filo: %d\n", list->philo.num_philo);
+	eat(list);
 	return (NULL);
 }
 
