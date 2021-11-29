@@ -6,7 +6,7 @@
 #    By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 16:51:39 by elvmarti          #+#    #+#              #
-#    Updated: 2021/11/26 16:55:25 by elvmarti         ###   ########.fr        #
+#    Updated: 2021/11/29 23:07:45 by elvmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ HEADER = philo.h
 SRCS = srcs/philo.c \
 		srcs/utils.c \
 		srcs/create_list.c \
-		srcs/eat.c
+		srcs/time.c \
+		srcs/do_things.c
 
 OBJS = $(SRCS:.c=.o)
 

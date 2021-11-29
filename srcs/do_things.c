@@ -1,56 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   do_things.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:34:10 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/26 17:16:00 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/11/29 23:46:12 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void think(t_philolist *list)
+static void	sleep_and_think(t_philolist *list)
 {
-	printf("Philosopher %d is thinking\n", list->philo.num_philo);
-	usleep(list->philo.time_think);
+	print_state(list, 's');
+	usleep(list->philo.time_sleep * 1000);
+	print_state(list, 't');
 	eat(list);
 }
 
-void	go_sleep(t_philolist *list)
+static void	take_forks(t_philolist *list)
 {
-	printf("Philosopher %d is sleeping\n", list->philo.num_philo);
-	usleep(list->philo.time_sleep);
-	think(list);
-}
-
-void	take_left_fork(t_philolist *list)
-{
-
-	list->prev->philo.fork = 1;
-	printf("Philosopher %d has taken a fork\n", list->philo.num_philo);
-}
-
-static void	take_right_fork(t_philolist *list)
-{
-
 	list->philo.fork = 1;
-	printf("Philosopher %d has taken a fork\n", list->philo.num_philo);
+	print_state(list, 'f');
+	list->prev->philo.fork = 1;
+	print_state(list, 'f');
 }
 
 void	eat(t_philolist *list)
 {
+	while (!list->philo.is_his_turn)
+	{
+	}
 	if (list->philo.is_his_turn)
 	{
-		take_right_fork(list);
-		take_left_fork(list);
-		printf("Philosopher %d is eating\n", list->philo.num_philo);
-		usleep(list->philo.time_eat);
+		pthread_mutex_lock(&list->philo.mutex_fork);
+		pthread_mutex_lock(&list->prev->philo.mutex_fork);
+		take_forks(list);
+		print_state(list, 'e');
+		usleep(list->philo.time_eat * 1000);
 		list->philo.is_his_turn = 0;
 		list->next->philo.is_his_turn = 1;
 		list->prev->philo.is_his_turn = 1;
+		pthread_mutex_unlock(&list->philo.mutex_fork);
+		pthread_mutex_unlock(&list->prev->philo.mutex_fork);
+		if (list->philo.check_num_eat)
+			list->philo.num_must_eat--;
 	}
-	go_sleep(list);
+	if (!list->philo.check_num_eat || list->philo.num_must_eat)
+		sleep_and_think(list);
 }

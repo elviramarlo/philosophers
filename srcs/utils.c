@@ -6,20 +6,29 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:41:19 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/25 23:45:15 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/11/29 23:37:05 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	calculate_time(t_philolist *l)
+void print_state(t_philolist *list, char c)
 {
-	gettimeofday(&l->philo.i_time, NULL);
-	usleep(2000);
-	gettimeofday(&l->philo.f_time, NULL);
-	l->philo.time = (l->philo.f_time.tv_sec - l->philo.i_time.tv_sec) * 
-		1000 + (l->philo.f_time.tv_usec - l->philo.i_time.tv_usec) / 1000.0;
-    printf("Has tardado: %g milisegundos\n", l->philo.time);
+	if (c == 'd')
+		printf(RED"%d - Philosopher %d died\n"RESET,
+			present_time(list->philo.time), list->philo.num_philo);
+	else if (c == 'f')
+		printf(YELLOW"%d - Philosopher %d has taken a fork\n"RESET,
+			present_time(list->philo.time), list->philo.num_philo);
+	else if (c == 'e')
+		printf(CYAN"%d - Philosopher %d is eating\n"RESET, 
+			present_time(list->philo.time), list->philo.num_philo);
+	else if (c == 's')
+		printf(PURPLE"%d - Philosopher %d is sleeping\n"RESET,
+			 present_time(list->philo.time), list->philo.num_philo);
+	else if (c == 't')
+		printf(GREEN"%d - Philosopher %d is thinking\n"RESET, 
+			present_time(list->philo.time), list->philo.num_philo);
 }
 
 int	print_error(void)

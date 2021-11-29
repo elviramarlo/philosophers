@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:01:11 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/26 16:58:30 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/11/29 23:37:21 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,13 @@ t_philolist	*make_philo(int i, int argc, char **argv)
 	list->philo.time_sleep = ft_atoi(argv[4]);
 	list->philo.num_philo = i;
 	list->philo.fork = 0;
+	pthread_mutex_init(&(list->philo.mutex_fork), NULL);
+	list->philo.time = present_time(0);
 	if (argc == 6)
+	{
 		list->philo.num_must_eat = ft_atoi(argv[5]);
+		list->philo.check_num_eat = 1;
+	}
 	if (list->philo.num_total_philo < 1)
 		print_error();
 	if (list->philo.num_philo % 2 == 0)
