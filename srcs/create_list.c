@@ -6,11 +6,11 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:01:11 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/29 23:37:21 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/02 20:01:14 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../includes/philosophers.h"
 
 t_philolist	*make_philo(int i, int argc, char **argv)
 {
@@ -44,7 +44,7 @@ t_philolist	*make_list(int argc, char **argv)
 	t_philolist	*list;
 	t_philolist	*aux;
 	t_philolist	*list_first;
-	int 		i;
+	int			i;
 	int			num_philos;
 
 	list = (t_philolist *)malloc(sizeof(t_philolist));

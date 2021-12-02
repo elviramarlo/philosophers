@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:28:05 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/11/29 23:34:26 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/02 21:23:25 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,19 @@
 typedef struct s_philo
 {
 	int				num_total_philo;
-	int				time_die;
+	unsigned int	time_die;
 	int				time_eat;
 	int				time_sleep;
-	int				time_think;
 	int				num_must_eat;
 	int				check_num_eat;
 	int				num_philo;
 	int				philo_has_died;
+	unsigned int	the_last_supper;
+	int				is_eating;
 	int				fork;
-	pthread_mutex_t	mutex_fork;
 	int				is_his_turn;
 	time_t			time;
+	pthread_mutex_t	mutex_fork;
 }			t_philo;
 
 typedef struct s_philolist
@@ -44,19 +45,16 @@ typedef struct s_philolist
 	struct s_philolist	*prev;
 }				t_philolist;
 
-
 t_philolist	*make_list(int argc, char **argv);
-void		eat(t_philolist *list);
+int			eat(t_philolist *list);
+int			philo_died(t_philolist *l);
+int			check_dead(t_philolist *list);
 void		print_state(t_philolist *list, char c);
-
-void		ft_usleep(int time_of_action);
- int		present_time(int time);
-
-int			print_error();
+int			present_time(int time);
+int			print_error(void);
 int			ft_isdigit(int a);
 void		ft_bzero(void *pt, size_t n);
 int			ft_atoi(char *str);
-
 
 # define RESET				"\x1b[0m"
 # define WHITE				"\x1b[1m"
