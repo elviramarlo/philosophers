@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/02 20:46:20 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/03 15:51:45 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-void	*make_thread(void *param)
-{
-	t_philolist	*list;
-
-	list = (t_philolist *)param;
-	eat(list);
-	return (NULL);
-}
 
 static int	check_args(int argc, char **argv)
 {
@@ -43,10 +34,11 @@ static int	check_args(int argc, char **argv)
 	return (0);
 }
 
-void leaks(void)
+/* void	leaks(void)
 {
 	system("leaks philo");
 }
+atexit(leaks); */
 
 int	main(int argc, char **argv)
 {
@@ -54,7 +46,6 @@ int	main(int argc, char **argv)
 	t_philolist	*list;
 	int			i;
 
-	atexit(leaks);
 	if (check_args(argc, argv))
 		return (1);
 	list = make_list(argc, argv);
@@ -66,7 +57,11 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	while (!philo_died(list))
+		continue ;
+	if (list->philo->check_num_eat)
 	{
+		while (list->philo->num_must_eat && !check_death(list))
+			pthread_join(thread, NULL);
 	}
 	return (0);
 }
