@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:28:05 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/03 22:05:09 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/03 22:37:13 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void		print_state(t_philolist *list, char c);
 int			present_time(int time);
 void		ft_usleep(int time_of_action);
 int			ft_isdigit(int a);
-void		ft_bzero(void *pt, size_t n);
 int			ft_atoi(char *str);
 
 # define RESET				"\x1b[0m"

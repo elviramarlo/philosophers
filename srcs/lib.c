@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 21:19:17 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/03 15:56:24 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/03 22:37:20 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,6 @@ int	ft_isdigit(int a)
 	if (a > 47 && a < 58)
 		return (1);
 	return (0);
-}
-
-void	ft_bzero(void *pt, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)pt)[i] = '\0';
-		i++;
-	}
 }
 
 int	ft_atoi(char *str)
