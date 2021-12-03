@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:41:19 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/03 15:45:41 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/03 22:16:19 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	print_state(t_philolist *list, char c)
 	else if (c == 't')
 		printf(GREEN"%d - Philosopher %d is thinking\n"RESET,
 			present_time(list->philo->time), list->philo->num_philo);
-	pthread_mutex_unlock(&mutex_print);
+	if (c != 'd')
+		pthread_mutex_unlock(&mutex_print);
 }
 
 int	present_time(int time)

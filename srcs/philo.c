@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/03 15:51:45 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/03 22:05:36 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int	check_args(int argc, char **argv)
 		}
 		i++;
 	}
+	if (ft_atoi(argv[1]) < 1)
+		return (print_error());
 	return (0);
 }
 
