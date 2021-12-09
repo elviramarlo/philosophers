@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:27:28 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/03 22:05:36 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/09 19:56:12 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@ int	main(int argc, char **argv)
 	}
 	while (!philo_died(list))
 		continue ;
-	if (list->philo->check_num_eat)
+	
+	/* if (list->philo->check_num_eat)
 	{
-		while (list->philo->num_must_eat && !check_death(list))
+		while ((list->philo->num_must_eat && !check_death(list)) || list->philo->is_printing)
 			pthread_join(thread, NULL);
-	}
+	} */
 	return (0);
 }

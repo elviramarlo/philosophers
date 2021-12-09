@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:34:10 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/03 22:22:40 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/09 19:43:23 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	take_forks(t_philolist *list)
 int	eat(t_philolist *list)
 {
 	while (!list->philo->is_his_turn)
-		continue ;
+	 	continue ;
 	if (list->philo->is_his_turn && !check_death(list))
 	{
 		pthread_mutex_lock(&list->philo->mutex_fork);
@@ -44,6 +44,7 @@ int	eat(t_philolist *list)
 		ft_usleep(list->philo->time_eat);
 		list->philo->is_his_turn = 0;
 		list->next->philo->is_his_turn = 1;
+		list->prev->philo->is_his_turn = 1;
 		pthread_mutex_unlock(&list->philo->mutex_fork);
 		if (list->philo->check_num_eat)
 			list->philo->num_must_eat--;

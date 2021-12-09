@@ -6,11 +6,12 @@
 #    By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 16:51:39 by elvmarti          #+#    #+#              #
-#    Updated: 2021/12/03 15:44:31 by elvmarti         ###   ########.fr        #
+#    Updated: 2021/12/09 16:55:49 by elvmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
+NAME_DEBUG = philo_debug
 
 HEADER = philosophers.h
 
@@ -33,6 +34,9 @@ $(NAME): $(OBJS)
 		@echo - Compiling -
 		$(CC) ${CFLAGS} ${OBJS} -I $(HEADER) -o ${NAME}
 
+debug:
+		@echo - Compiling Debug -
+		$(CC) ${CFLAGS} ${SRCS} -I $(HEADER) -o ${NAME_DEBUG} -g
 all: $(NAME)
 
 clean:

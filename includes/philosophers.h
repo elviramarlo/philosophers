@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:28:05 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/03 22:37:13 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/09 19:56:07 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_philo
 	int				check_num_eat;
 	int				num_philo;
 	int				philo_has_died;
-	unsigned int	the_last_supper;
-	int				is_eating;
+	time_t			the_last_supper;
+	int				is_printing;
 	int				fork;
 	int				is_his_turn;
 	time_t			time;
@@ -52,10 +52,11 @@ int			philo_died(t_philolist *l);
 int			check_death(t_philolist *list);
 int			print_error(void);
 void		print_state(t_philolist *list, char c);
-int			present_time(int time);
+time_t			present_time(time_t time);
 void		ft_usleep(int time_of_action);
 int			ft_isdigit(int a);
 int			ft_atoi(char *str);
+void		ft_bzero(void *pt, size_t n);
 
 # define RESET				"\x1b[0m"
 # define WHITE				"\x1b[1m"

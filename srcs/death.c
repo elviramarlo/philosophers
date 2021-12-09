@@ -6,15 +6,16 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 15:42:49 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/03 15:48:02 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/09 20:01:12 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-static	void	is_dead(t_philolist *l, unsigned int time)
+static	void	is_dead(t_philolist *l, time_t time)
 {
-	if ((present_time(0) - time) >= l->philo->time_die)
+	time_t test = present_time(0) - time;
+	if (test >= l->philo->time_die)
 	{
 		print_state(l, 'd');
 		l->philo->philo_has_died = 1;

@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:41:19 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/03 22:16:19 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/09 19:36:28 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,29 @@ void	print_state(t_philolist *list, char c)
 {
 	static pthread_mutex_t	mutex_print = PTHREAD_MUTEX_INITIALIZER;
 
+	list->philo->is_printing = 1;
 	pthread_mutex_lock(&mutex_print);
 	if (c == 'd')
 		printf(RED"%d - Philosopher %d died\n"RESET,
-			present_time(list->philo->time), list->philo->num_philo);
+			(int)present_time(list->philo->time) + 1, list->philo->num_philo);
 	else if (c == 'f')
 		printf(YELLOW"%d - Philosopher %d has taken a fork\n"RESET,
-			present_time(list->philo->time), list->philo->num_philo);
+			(int)present_time(list->philo->time), list->philo->num_philo);
 	else if (c == 'e')
 		printf(CYAN"%d - Philosopher %d is eating\n"RESET,
-			present_time(list->philo->time), list->philo->num_philo);
+			(int)present_time(list->philo->time), list->philo->num_philo);
 	else if (c == 's')
 		printf(PURPLE"%d - Philosopher %d is sleeping\n"RESET,
-			present_time(list->philo->time), list->philo->num_philo);
+			(int)present_time(list->philo->time), list->philo->num_philo);
 	else if (c == 't')
 		printf(GREEN"%d - Philosopher %d is thinking\n"RESET,
-			present_time(list->philo->time), list->philo->num_philo);
-	if (c != 'd')
+			(int)present_time(list->philo->time), list->philo->num_philo);
+	if (c != 'd' /* || (!list->philo->num_must_eat && list->philo->check_num_eat) */)
 		pthread_mutex_unlock(&mutex_print);
+	list->philo->is_printing = 0;
 }
 
-int	present_time(int time)
+time_t	present_time(time_t time)
 {
 	struct timeval	start;
 
@@ -52,7 +54,7 @@ int	present_time(int time)
 
 void	ft_usleep(int time_of_action)
 {
-	int	start;
+	time_t	start;
 
 	start = present_time(0);
 	while ((present_time(0) - start) < time_of_action)
