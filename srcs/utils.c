@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:41:19 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/09 19:36:28 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/10 17:54:50 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	print_state(t_philolist *list, char c)
 {
 	static pthread_mutex_t	mutex_print = PTHREAD_MUTEX_INITIALIZER;
 
-	list->philo->is_printing = 1;
 	pthread_mutex_lock(&mutex_print);
 	if (c == 'd')
 		printf(RED"%d - Philosopher %d died\n"RESET,
@@ -39,9 +38,8 @@ void	print_state(t_philolist *list, char c)
 	else if (c == 't')
 		printf(GREEN"%d - Philosopher %d is thinking\n"RESET,
 			(int)present_time(list->philo->time), list->philo->num_philo);
-	if (c != 'd' /* || (!list->philo->num_must_eat && list->philo->check_num_eat) */)
+	if (c != 'd' && !check_all_eat(list))
 		pthread_mutex_unlock(&mutex_print);
-	list->philo->is_printing = 0;
 }
 
 time_t	present_time(time_t time)

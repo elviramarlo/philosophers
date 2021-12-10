@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:28:05 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/09 19:56:07 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/10 17:51:05 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ t_philolist	*make_list(int argc, char **argv);
 void		*make_thread(void *param);
 int			eat(t_philolist *list);
 int			philo_died(t_philolist *l);
+int			check_all_eat(t_philolist *list);
 int			check_death(t_philolist *list);
 int			print_error(void);
 void		print_state(t_philolist *list, char c);
-time_t			present_time(time_t time);
+time_t		present_time(time_t time);
 void		ft_usleep(int time_of_action);
 int			ft_isdigit(int a);
 int			ft_atoi(char *str);
