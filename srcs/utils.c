@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:41:19 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/12 18:48:01 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/12 20:39:08 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ void	ft_usleep(int time_of_action)
 
 	start = present_time(0);
 	while ((present_time(0) - start) < time_of_action)
-		usleep(100);
+		usleep(600);
 }

@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 15:42:49 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/10 17:47:40 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/12 20:21:36 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ int	check_all_eat(t_philolist *list)
 	t_philolist				*aux;
 	int						i;
 	int						all_eat;
-	static pthread_mutex_t	mutex_eat = PTHREAD_MUTEX_INITIALIZER;
 
-	pthread_mutex_lock(&mutex_eat);
 	all_eat = 0;
 	aux = list;
 	i = 0;
@@ -78,7 +76,6 @@ int	check_all_eat(t_philolist *list)
 			i++;
 		}
 	}
-	pthread_mutex_unlock(&mutex_eat);
 	if (all_eat == aux->philo->num_total_philo)
 		return (1);
 	return (0);

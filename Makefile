@@ -6,7 +6,7 @@
 #    By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 16:51:39 by elvmarti          #+#    #+#              #
-#    Updated: 2021/12/12 19:00:24 by elvmarti         ###   ########.fr        #
+#    Updated: 2021/12/12 21:08:46 by elvmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ HEADER = philosophers.h
 SRCS = srcs/philo.c \
 		srcs/utils.c \
 		srcs/create_list.c \
-		srcs/do_things.c \
 		srcs/death.c \
+		srcs/do_things.c \
 		srcs/lib.c
 
 OBJS = $(SRCS:.c=.o)

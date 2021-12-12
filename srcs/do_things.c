@@ -6,20 +6,11 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:34:10 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/12 18:29:11 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/12 21:07:15 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-static int	sleep_and_think(t_philolist *list)
-{
-	print_state(list, 's');
-	ft_usleep(list->philo->time_sleep);
-	print_state(list, 't');
-	eat(list);
-	return (0);
-}
 
 static void	take_forks(t_philolist *list)
 {
@@ -38,12 +29,12 @@ static void	take_forks(t_philolist *list)
 int	eat(t_philolist *list)
 {
 	while (!list->philo->is_his_turn)
-		continue ;
-	if (list->philo->is_his_turn && !check_death(list))
+		usleep(100);
+	if (list->philo->is_his_turn && list->philo->num_total_philo > 1)
 	{
 		pthread_mutex_lock(&list->philo->mutex_fork);
-		while (list->philo->fork != list->philo->num_philo
-			|| list->next->philo->fork != list->philo->num_philo)
+		while ((list->philo->fork != list->philo->num_philo
+				|| list->next->philo->fork != list->philo->num_philo))
 			take_forks(list);
 		if (list->philo->check_num_eat)
 			list->philo->num_must_eat--;
@@ -57,7 +48,6 @@ int	eat(t_philolist *list)
 		list->next->philo->fork = 0;
 		pthread_mutex_unlock(&list->philo->mutex_fork);
 	}
-	sleep_and_think(list);
 	return (0);
 }
 
@@ -66,6 +56,17 @@ void	*make_thread(void *param)
 	t_philolist	*list;
 
 	list = (t_philolist *)param;
-	eat(list);
+	if (list->philo->num_total_philo < 2)
+		print_state(list, 'f');
+	else
+	{
+		while (!check_death(list))
+		{
+			eat(list);
+			print_state(list, 's');
+			ft_usleep(list->philo->time_sleep);
+			print_state(list, 't');
+		}
+	}
 	return (NULL);
 }
