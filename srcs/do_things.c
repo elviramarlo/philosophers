@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:34:10 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/10 17:48:07 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/12 18:29:11 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static int	sleep_and_think(t_philolist *list)
 {
 	print_state(list, 's');
 	ft_usleep(list->philo->time_sleep);
-	if (check_death(list))
-		return (1);
 	print_state(list, 't');
 	eat(list);
 	return (0);
@@ -25,10 +23,16 @@ static int	sleep_and_think(t_philolist *list)
 
 static void	take_forks(t_philolist *list)
 {
-	list->philo->fork = 1;
-	print_state(list, 'f');
-	list->prev->philo->fork = 1;
-	print_state(list, 'f');
+	if (!list->philo->fork)
+	{
+		list->philo->fork = list->philo->num_philo;
+		print_state(list, 'f');
+	}
+	if (!list->next->philo->fork)
+	{
+		list->next->philo->fork = list->philo->num_philo;
+		print_state(list, 'f');
+	}
 }
 
 int	eat(t_philolist *list)
@@ -38,7 +42,9 @@ int	eat(t_philolist *list)
 	if (list->philo->is_his_turn && !check_death(list))
 	{
 		pthread_mutex_lock(&list->philo->mutex_fork);
-		take_forks(list);
+		while (list->philo->fork != list->philo->num_philo
+			|| list->next->philo->fork != list->philo->num_philo)
+			take_forks(list);
 		if (list->philo->check_num_eat)
 			list->philo->num_must_eat--;
 		print_state(list, 'e');
@@ -47,10 +53,11 @@ int	eat(t_philolist *list)
 		list->philo->is_his_turn = 0;
 		list->next->philo->is_his_turn = 1;
 		list->prev->philo->is_his_turn = 1;
+		list->philo->fork = 0;
+		list->next->philo->fork = 0;
 		pthread_mutex_unlock(&list->philo->mutex_fork);
 	}
-	if (!list->philo->philo_has_died && !check_death(list))
-		sleep_and_think(list);
+	sleep_and_think(list);
 	return (0);
 }
 
