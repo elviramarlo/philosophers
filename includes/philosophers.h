@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:28:05 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/12 21:07:29 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:14:42 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_philo
 	int				num_philo;
 	int				philo_has_died;
 	time_t			the_last_supper;
-	int				is_printing;
 	int				fork;
 	int				is_his_turn;
 	time_t			time;
