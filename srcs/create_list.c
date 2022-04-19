@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:01:11 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/12/12 21:08:40 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:36:20 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static t_philolist	*make_philo(int i, int argc, char **argv)
 {
 	t_philolist	*list;
-	
+
 	list = (t_philolist *)malloc(sizeof(t_philolist));
 	list->philo = (t_philo *)malloc(sizeof(t_philo));
 	ft_bzero(list->philo, sizeof(t_philo));
